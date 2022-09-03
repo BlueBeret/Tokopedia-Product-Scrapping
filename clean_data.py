@@ -14,11 +14,17 @@ all_data = []
 for data in json_files:
     all_data += data
 
+clean_data = []
 
+done_links = open('done.txt','w')
 
 for i,j in enumerate(all_data):
-    if j['product_name'] == "" or j['spesifikasi'] == "" or j['deskripsi'] == "":
-        del all_data[i]
+    if j['product_name'] == "" or j['spesifikasi'] == "" or j['deskripsi'] == "" or j['product_name'] == "null" or j['spesifikasi'] == "null" or j['deskripsi'] == "null":
+        continue
+    done_links.write(j['Page_URL'] + '\n')
+    clean_data.append(j)
 
-with open('data_clean.json', 'a') as of:
-    json.dump(all_data, of)
+
+print(len(clean_data))
+with open('data_clean.json', 'w') as of:
+    json.dump(clean_data, of)
