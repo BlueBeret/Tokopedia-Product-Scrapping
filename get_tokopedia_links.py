@@ -80,3 +80,5 @@ except Exception as e:
 
 
 
+with open('tokopedia/links.json', 'w') as fo:
+    json.dump(links, fo)
